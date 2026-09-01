@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@500;600;700&amp;display=swap">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#F3F4F6',
+          surface: '#FFFFFF',
+          ink: { 900: '#0F172A' },
+          accent: { DEFAULT: '#4682B4', 100: '#eaf2f9', 200: '#cfe2f1', 300: '#a8cae6', 400: '#7fadd6', 500: '#4682B4', 600: '#3a6d99', 700: '#2e567a', 800: '#1F2937', 900: '#0F172A' },
+          accent2: { DEFAULT: '#F97316', 100: '#fef1e6', 200: '#fddfc4', 300: '#fbc394', 400: '#fba55f', 500: '#F97316', 600: '#dd6210', 700: '#b34d09', 800: '#7d3606', 900: '#4a2004' },
+          neutral: { 100: '#f5f5f8', 200: '#e7e7ea', 300: '#d4d4d7', 400: '#b7b7ba', 500: '#98989b', 600: '#7a7a7d', 700: '#5d5d60', 800: '#424244', 900: '#2b2b2d' },
+          divider: 'rgba(31,41,55,.18)',
+        },
+        fontFamily: {
+          heading: ['"Barlow Condensed"', 'system-ui', 'sans-serif'],
+          body: ['Barlow', 'system-ui', 'sans-serif'],
+        },
+        boxShadow: {
+          sm: '0 1px 2px rgba(43,43,45,.14)',
+          md: '0 3px 10px rgba(43,43,45,.16)',
+          lg: '0 12px 32px rgba(43,43,45,.22)',
+        },
+      },
+    },
+  }
+</script>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div class="font-body bg-bg text-accent-800 min-h-screen">
+
+  <nav class="flex items-center gap-6 px-12 py-4 bg-ink-900 sticky top-0 z-20">
+    <img src="assets/logo-idc.png" alt="IDC" class="h-[22px] w-auto">
+    <span class="font-heading text-[15px] tracking-[.1em] uppercase text-white/[.72] mr-auto">Industrial Drone Cleaning</span>
+    <button type="button" onClick="{{ goHome }}" class="font-heading text-[15px] tracking-[.06em] uppercase text-white bg-transparent border-0 cursor-pointer px-[2px] py-[6px]">Home</button>
+    <button type="button" onClick="{{ goDiensten }}" class="font-heading text-[15px] tracking-[.06em] uppercase text-white bg-transparent border-0 cursor-pointer px-[2px] py-[6px]">Diensten</button>
+    <button type="button" onClick="{{ goOver }}" class="font-heading text-[15px] tracking-[.06em] uppercase text-white bg-transparent border-0 cursor-pointer px-[2px] py-[6px]">Over ons</button>
+    <button type="button" onClick="{{ goPrijzen }}" class="font-heading text-[15px] tracking-[.06em] uppercase text-white bg-transparent border-0 cursor-pointer px-[2px] py-[6px]">Prijzen</button>
+    <button type="button" onClick="{{ goContact }}" class="font-heading text-[15px] tracking-[.06em] uppercase text-white bg-transparent border-0 cursor-pointer px-[2px] py-[6px]">Contact</button>
+    <button type="button" onClick="{{ goContact }}" class="inline-flex items-center justify-center gap-1.5 cursor-pointer font-heading font-semibold text-sm rounded-none border border-divider px-4 py-2 bg-accent2 text-white">Inspectie aanvragen</button>
+  </nav>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main>
+    <section class="relative bg-ink-900 text-white">
+      <img src="./hercules-20---facade-cleaning_edited_edi-mt7obuia-987g.jpg" alt="Drone reinigt een windturbineblad" class="absolute inset-0 w-full h-full object-cover opacity-[.38]">
+      <div class="relative px-12 pt-28 pb-20 max-w-[820px]">
+        <div class="font-heading text-xl tracking-[.16em] uppercase text-accent2">Industrieel reinigen met drones</div>
+        <h1 class="font-heading text-[92px] leading-none uppercase mt-[18px] mb-0"><span class="block">250 bar</span><span class="block">op 100 meter hoogte</span></h1>
+        <p class="text-[19px] leading-[1.55] text-white/[.82] mt-[26px] max-w-[54ch]">Gevels, schepen, turbines en infrastructuur reinigen zonder steiger of hoogwerker. Water tot 120 graden, optioneel osmosewater voor een vlekvrij resultaat.</p>
+        <div class="flex gap-3 mt-[34px]">
+          <button type="button" onClick="{{ goContact }}" class="inline-flex items-center justify-center gap-1.5 cursor-pointer font-heading font-semibold text-sm rounded-none border border-divider px-4 py-2 bg-accent2 text-white">Inspectie aanvragen</button>
+          <button type="button" onClick="{{ goDiensten }}" class="inline-flex items-center justify-center gap-1.5 cursor-pointer font-heading font-semibold text-sm rounded-none border border-white/[.45] text-white px-4 py-2">Bekijk diensten</button>
+        </div>
+      </div>
+      <div class="relative grid grid-cols-4 border-t border-white/[.18]">
+        <div class="px-7 py-[22px]">
+          <div class="font-heading text-4xl">250 bar</div>
+          <div class="text-[13px] tracking-[.08em] uppercase text-white/60">Werkdruk</div>
+        </div>
+        <div class="px-7 py-[22px] border-l border-white/[.18]">
+          <div class="font-heading text-4xl">100 m</div>
+          <div class="text-[13px] tracking-[.08em] uppercase text-white/60">Werkhoogte</div>
+        </div>
+        <div class="px-7 py-[22px] border-l border-white/[.18]">
+          <div class="font-heading text-4xl">120 °C</div>
+          <div class="text-[13px] tracking-[.08em] uppercase text-white/60">Watertemperatuur</div>
+        </div>
+        <div class="px-7 py-[22px] border-l border-white/[.18]">
+          <div class="font-heading text-4xl">Osmose</div>
+          <div class="text-[13px] tracking-[.08em] uppercase text-white/60">Optioneel</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-[72px] px-12">
+      <div class="flex items-baseline justify-between gap-6">
+        <h2 class="font-heading text-[44px] uppercase m-0">Wat wij reinigen</h2>
+        <button type="button" onClick="{{ goDiensten }}" class="font-heading text-[15px] tracking-[.08em] uppercase bg-transparent border-0 cursor-pointer text-accent-700">Alle diensten →</button>
+      </div>
+      <div class="grid grid-cols-3 gap-8 mt-8">
+        <figure class="relative border border-divider m-0">
+          <img src="./hercules-20---facade-cleaning_edited_edi-mt7obuia-987g.jpg" alt="Industriehal" class="w-full h-[220px] object-cover">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <figcaption class="p-[18px]">
+            <h3 class="font-heading text-2xl uppercase mt-0 mb-2">Industrie &amp; gebouwen</h3>
+            <p class="text-[15px] leading-[1.55] m-0 text-neutral-800">Hallen, silo's, leidingbruggen en installaties, vanaf de grond bediend.</p>
+          </figcaption>
+        </figure>
+        <figure class="relative border border-divider m-0">
+          <img src="assets/zonnepark.png" alt="Zonnepark" class="w-full h-[220px] object-cover">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <figcaption class="p-[18px]">
+            <h3 class="font-heading text-2xl uppercase mt-0 mb-2">Energie</h3>
+            <p class="text-[15px] leading-[1.55] m-0 text-neutral-800">Windturbines en zonneparken, met osmosewater voor maximale opbrengst zonder strepen.</p>
+          </figcaption>
+        </figure>
+        <figure class="relative border border-divider m-0">
+          <image-slot id="home-haven" shape="rect" class="w-full h-[220px] block" placeholder="Foto: schip of brug in de haven"></image-slot>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <figcaption class="p-[18px]">
+            <h3 class="font-heading text-2xl uppercase mt-0 mb-2">Havens &amp; infra</h3>
+            <p class="text-[15px] leading-[1.55] m-0 text-neutral-800">Schepen bij aankomst, bruggen en viaducten — zonder hoogwerkers of klimwerk.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="pb-[72px] px-12 pt-0 grid grid-cols-[5fr_7fr] gap-14 items-center">
+      <div>
+        <div class="font-heading text-sm tracking-[.1em] uppercase text-accent-700">Werkwijze</div>
+        <hr class="h-px border-0 bg-divider mt-3 mb-5">
+        <h2 class="font-heading text-[40px] leading-[1.05] uppercase m-0">Geen steiger, geen hoogwerker, geen stilstand</h2>
+        <p class="text-base leading-[1.6] text-neutral-800 mt-[18px] max-w-[46ch]">Eén piloot, één operator, één opstelplaats. Wij inspecteren de locatie vooraf, bepalen de aanvliegroute en werken volgens vaste veiligheidsafspraken met uw eigen procedures.</p>
+        <div class="grid gap-4 mt-[26px] max-w-[48ch]">
+          <div class="flex gap-[14px] items-baseline">
+            <span class="font-heading text-[13px] tracking-[.1em] text-accent-700 min-w-[2ch]">01</span>
+            <span class="text-base leading-[1.55]"><strong class="font-heading text-[19px] tracking-[.02em] uppercase block">Veiliger</strong>Niemand hoeft de hoogte in. Geen steiger, geen hoogwerker, geen klimwerk — het risico van werken op hoogte verdwijnt uit de klus.</span>
+          </div>
+          <div class="flex gap-[14px] items-baseline">
+            <span class="font-heading text-[13px] tracking-[.1em] text-accent-700 min-w-[2ch]">02</span>
+            <span class="text-base leading-[1.55]"><strong class="font-heading text-[19px] tracking-[.02em] uppercase block">Sneller inzetbaar</strong>Geen opbouwtijd. De drone staat binnen een halve dag op locatie en vliegt, ook bij spoed.</span>
+          </div>
+          <div class="flex gap-[14px] items-baseline">
+            <span class="font-heading text-[13px] tracking-[.1em] text-accent-700 min-w-[2ch]">03</span>
+            <span class="text-base leading-[1.55]"><strong class="font-heading text-[19px] tracking-[.02em] uppercase block">Voordeliger</strong>Minder downtime en geen steigerkosten. Direct inzetbaar en sneller per m2 dan conventionele methodes.</span>
+          </div>
+        </div>
+        <button type="button" onClick="{{ goOver }}" class="inline-flex items-center justify-center gap-1.5 cursor-pointer font-heading font-semibold text-sm rounded-none border border-divider px-4 py-2 hover:bg-black/5 active:bg-black/10 mt-[26px]">Over ons</button>
+      </div>
+      <figure class="relative border border-divider m-0">
+        <img src="assets/gebouw.jpg" alt="Drone reinigt de gevel van een industriehal" class="w-full h-[420px] object-cover block">
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+      </figure>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isDiensten }}">
+  <main>
+    <section class="bg-ink-900 text-white py-[72px] px-12">
+      <div class="font-heading text-sm tracking-[.16em] uppercase text-accent2">Diensten</div>
+      <h1 class="font-heading text-[68px] leading-[1.02] uppercase mt-4 mb-0 max-w-[24ch]">Reinigen waar mensen niet veilig komen</h1>
+      <p class="text-lg leading-[1.55] text-white/[.82] mt-[22px] max-w-[60ch]">Onze drone draagt een hogedrukinstallatie van 250 bar tot 100 meter hoogte. Warm water tot 120 graden voor vet en aanslag, osmosewater voor glas en panelen. Veiliger dan werken op hoogte, sneller inzetbaar dan een steiger en voordeliger dan een hoogwerker.</p>
+    </section>
+
+    <section class="py-16 px-12">
+      <div class="grid grid-cols-2 gap-10">
+        <div class="relative p-[26px] border border-divider">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <div class="font-heading text-[13px] tracking-[.1em] text-accent-700">01</div>
+          <h2 class="font-heading text-3xl uppercase mt-1.5 mb-2.5">Industriële gebouwen</h2>
+          <p class="text-[15px] leading-[1.6] mb-3.5 mt-0 text-neutral-800">Gevels, daken, silo's, leidingbruggen, kranen en installaties. Wij werken vanaf een vaste opstelplaats, dus de productie kan doorlopen en er hoeft geen steigerwerk te worden opgebouwd.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Gevelreiniging</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Dakreiniging</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Silo's &amp; tanks</span>
+          </div>
+        </div>
+        <div class="relative p-[26px] border border-divider">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <div class="font-heading text-[13px] tracking-[.1em] text-accent-700">02</div>
+          <h2 class="font-heading text-3xl uppercase mt-1.5 mb-2.5">Schepen in de haven</h2>
+          <p class="text-[15px] leading-[1.6] mb-3.5 mt-0 text-neutral-800">Rompen, opbouw, dekken en schoorstenen van schepen die aankomen. Zout, roetaanslag en vervuiling eraf terwijl het schip aan de kade ligt — klaar voor inspectie, verf of oplevering.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Romp &amp; opbouw</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Dek</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Aan de kade</span>
+          </div>
+        </div>
+        <div class="relative p-[26px] border border-divider">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <div class="font-heading text-[13px] tracking-[.1em] text-accent-700">03</div>
+          <h2 class="font-heading text-3xl uppercase mt-1.5 mb-2.5">Infrastructuur</h2>
+          <p class="text-[15px] leading-[1.6] mb-3.5 mt-0 text-neutral-800">Aanslag, algen en uitlaatvervuiling van bruggen, viaducten, geluidsschermen, portalen en sluizen. Wij zijn inzetbaar voor beheerders als Rijkswaterstaat, provincies en gemeenten en stemmen het vliegplan af op hun verkeersmaatregelen: vanaf de berm, het water of de kant, of binnen een geplande stremming.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Bruggen</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Viaducten</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Geluidsschermen</span>
+          </div>
+        </div>
+        <div class="relative p-[26px] border border-divider">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <div class="font-heading text-[13px] tracking-[.1em] text-accent-700">04</div>
+          <h2 class="font-heading text-3xl uppercase mt-1.5 mb-2.5">Energie: wind &amp; zon</h2>
+          <p class="text-[15px] leading-[1.6] mb-3.5 mt-0 text-neutral-800">Turbinebladen en zonneparken, gereinigd met osmosewater zodat er geen kalk of strepen achterblijven. Vuil kost opbrengst; reinigen is meetbaar terugverdiend. Bij windturbines geldt een ashoogte van maximaal 100 meter.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Turbinebladen</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Ashoogte max. 100 m</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Zonnepanelen</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Osmosewater</span>
+          </div>
+        </div>
+        <div class="relative p-[26px] border border-divider col-span-full">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <div class="font-heading text-[13px] tracking-[.1em] text-accent-700">05</div>
+          <h2 class="font-heading text-3xl uppercase mt-1.5 mb-2.5">Glasbewassing</h2>
+          <p class="text-[15px] leading-[1.6] mb-3.5 mt-0 text-neutral-800 max-w-[76ch]">Ramen, glazen gevels, lichtstraten en atriumdaken tot 100 meter hoogte. Wij werken met osmosewater, zodat het glas vlek- en kalkvrij opdroogt zonder nawerk. Geen glazenwassersgondel, geen hoogwerker en geen mensen op hoogte.</p>
+          <div class="flex gap-2 flex-wrap">
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Glazen gevels</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Lichtstraten</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Atriumdaken</span>
+            <span class="inline-flex items-center text-[11px] tracking-[.02em] px-2.5 py-[3px] rounded-[3px] border border-accent text-accent">Osmosewater</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-[72px] px-12">
+      <div class="relative border border-divider">
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+        <div class="flex border-b border-divider font-heading text-sm tracking-[.1em] uppercase">
+          <span class="flex-1 px-[22px] py-3">Technische specificatie — reinigingsunit</span>
+          <span class="px-[22px] py-3 border-l border-divider text-accent-700">IDC-01</span>
+        </div>
+        <table class="w-full border-collapse text-sm">
+          <tbody>
+            <tr><td class="w-[34%] px-[7px] py-[7px] border-b border-black/[.08]">Werkdruk</td><td class="font-heading text-xl px-[7px] py-[7px] border-b border-black/[.08]">250 bar</td><td class="text-neutral-700 px-[7px] py-[7px] border-b border-black/[.08]">Op elke nozzle</td></tr>
+            <tr><td class="px-[7px] py-[7px] border-b border-black/[.08]">Werkhoogte</td><td class="font-heading text-xl px-[7px] py-[7px] border-b border-black/[.08]">tot 100 m</td><td class="text-neutral-700 px-[7px] py-[7px] border-b border-black/[.08]">Zonder steiger of hoogwerker</td></tr>
+            <tr><td class="px-[7px] py-[7px] border-b border-black/[.08]">Watertemperatuur</td><td class="font-heading text-xl px-[7px] py-[7px] border-b border-black/[.08]">tot 120 °C</td><td class="text-neutral-700 px-[7px] py-[7px] border-b border-black/[.08]">Voor vet, olie en aanslag</td></tr>
+            <tr><td class="px-[7px] py-[7px] border-b border-black/[.08]">Osmosewater</td><td class="font-heading text-xl px-[7px] py-[7px] border-b border-black/[.08]">Optioneel</td><td class="text-neutral-700 px-[7px] py-[7px] border-b border-black/[.08]">Vlekvrij op glas en panelen</td></tr>
+            <tr><td class="px-[7px] py-[7px]">Zeep &amp; schoonmaakmiddelen</td><td class="font-heading text-xl px-[7px] py-[7px]">Mogelijk</td><td class="text-neutral-700 px-[7px] py-[7px]">Middel afgestemd op ondergrond en vervuiling</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isOver }}">
+  <main>
+    <section class="bg-ink-900 text-white py-[72px] px-12">
+      <div class="font-heading text-sm tracking-[.16em] uppercase text-accent2">Over ons</div>
+      <h1 class="font-heading text-[68px] leading-[1.02] uppercase mt-4 mb-0 max-w-[22ch]">Vanuit Groningen, de hele industrie in</h1>
+    </section>
+
+    <section class="py-16 px-12 grid grid-cols-[7fr_5fr] gap-14 items-start">
+      <div>
+        <p class="text-lg leading-[1.6] mb-4 mt-0">Industrial Drone Cleaning reinigt industriële objecten met een drone waaronder een hogedrukinstallatie hangt. Wat vroeger een steiger, een hoogwerker of een klimteam vroeg, doen wij vanaf de grond: sneller opgebouwd, minder risico, geen mensen op hoogte.</p>
+        <p class="text-base leading-[1.6] text-neutral-800 mb-4 mt-0">Onze focus ligt op de industriële sector: productielocaties, havens en infrastructuur. Elke klus begint met een locatie-inspectie — hoogte, bereikbaarheid, waterafvoer, omgeving en veiligheidszones. Daarna leggen we het plan vast en werken we volgens uw eigen procedures.</p>
+        <p class="text-base leading-[1.6] text-neutral-800 mb-4 mt-0">Onze vluchten worden uitgevoerd met vergunning van de ILT en onze piloten zijn EASA-gecertificeerd. Dat betekent vaste procedures, aantoonbare bevoegdheid van de piloot en een risicobeoordeling per locatie — de basis om op een industrieterrein of in een haven te mogen werken.</p>
+        <p class="text-base leading-[1.6] text-neutral-800 m-0">Wij werken door heel Nederland en zijn bereikbaar voor spoedopdrachten wanneer een schip of een productielijn niet kan wachten.</p>
+      </div>
+      <div class="relative p-6 border border-divider">
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+        <h3 class="font-heading text-[22px] uppercase mt-0 mb-3.5">Vaste afspraken</h3>
+        <div class="grid gap-3 text-[15px] leading-normal">
+          <div class="flex gap-3"><span class="font-heading text-accent-700">01</span><span>Vluchten onder ILT-vergunning</span></div>
+          <div class="flex gap-3"><span class="font-heading text-accent-700">02</span><span>EASA-gecertificeerde piloten</span></div>
+          <div class="flex gap-3"><span class="font-heading text-accent-700">03</span><span>Locatie-inspectie vóór elke opdracht</span></div>
+          <div class="flex gap-3"><span class="font-heading text-accent-700">04</span><span>Werken volgens uw veiligheidsprocedures</span></div>
+          <div class="flex gap-3"><span class="font-heading text-accent-700">05</span><span>Rapportage met beeld voor en na</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-[72px] px-12 pt-0 grid grid-cols-2 gap-8">
+      <figure class="relative border border-divider m-0">
+        <img src="assets/zonnepanelen.png" alt="Drone reinigt zonnepanelen" class="w-full h-[300px] object-cover">
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+      </figure>
+      <figure class="relative border border-divider m-0">
+        <img src="./hercules-20---facade-cleaning_edited_edi-mt7obuia-987g.jpg" alt="Drone in bedrijf" class="w-full h-[300px] object-cover">
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+      </figure>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isPrijzen }}">
+  <main>
+    <section class="bg-ink-900 text-white py-[72px] px-12">
+      <div class="font-heading text-sm tracking-[.16em] uppercase text-accent2">Prijzen</div>
+      <h1 class="font-heading text-[68px] leading-[1.02] uppercase mt-4 mb-0 max-w-[22ch]">Wat een opdracht kost</h1>
+      <p class="text-lg leading-[1.55] text-white/[.82] mt-[22px] max-w-[58ch]">Elke locatie is anders: hoogte, vervuiling, bereikbaarheid en waterafvoer bepalen de tijd op locatie. Wij bepalen de prijs daarom na inspectie van de klus — daarna weet u precies waar u aan toe bent.</p>
+    </section>
+
+    <section class="py-16 px-12">
+      <div class="grid grid-cols-3 gap-8">
+        <div class="relative p-[26px] border border-divider">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <div class="font-heading text-[13px] tracking-[.1em] text-accent-700">01 · INSPECTIE</div>
+          <h2 class="font-heading text-3xl uppercase mt-2 mb-1.5">Locatiebezoek</h2>
+          <div class="font-heading text-4xl leading-[1.1]">Eerste stap</div>
+          <p class="text-[15px] leading-[1.6] text-neutral-800 mt-2.5 mb-0">Wij bekijken het object, meten hoogte en bereikbaarheid en bepalen wat de klus vraagt aan tijd, water en veiligheidszones.</p>
+        </div>
+        <div class="relative p-[26px] border border-divider">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <div class="font-heading text-[13px] tracking-[.1em] text-accent2-700">02 · REINIGEN</div>
+          <h2 class="font-heading text-3xl uppercase mt-2 mb-1.5">Vaste prijs</h2>
+          <div class="font-heading text-4xl leading-[1.1]">Na inspectie</div>
+          <p class="text-[15px] leading-[1.6] text-neutral-800 mt-2.5 mb-0">U krijgt één prijs voor de hele klus, inclusief drone, hogedrukinstallatie, piloot en operator. Warm water standaard, osmosewater en schoonmaakmiddelen als optie.</p>
+        </div>
+        <div class="relative p-[26px] border border-divider">
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+          <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+          <div class="font-heading text-[13px] tracking-[.1em] text-accent-700">03 · ONDERHOUD</div>
+          <h2 class="font-heading text-3xl uppercase mt-2 mb-1.5">Jaarcontract</h2>
+          <div class="font-heading text-[44px] leading-[1.1]">Op maat</div>
+          <p class="text-[15px] leading-[1.6] text-neutral-800 mt-2.5 mb-0">Vaste reinigingsrondes per kwartaal of seizoen, met voorrang bij spoed en een vast tarief per ronde.</p>
+        </div>
+      </div>
+
+      <div class="relative mt-10 p-[26px] flex justify-between items-center gap-8 flex-wrap border border-divider">
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+        <p class="text-[15px] leading-[1.6] m-0 max-w-[62ch] text-neutral-800">Wij geven pas een prijs als we de klus hebben gezien. Zo voorkomen we verrassingen achteraf voor beide kanten. Alle bedragen exclusief btw.</p>
+        <button type="button" onClick="{{ goContact }}" class="inline-flex items-center justify-center gap-1.5 cursor-pointer font-heading font-semibold text-sm rounded-none border border-divider px-4 py-2 bg-accent2 text-white">Inspectie aanvragen</button>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isContact }}">
+  <main>
+    <section class="bg-ink-900 text-white py-[72px] px-12">
+      <div class="font-heading text-sm tracking-[.16em] uppercase text-accent2">Contact</div>
+      <h1 class="font-heading text-[68px] leading-[1.02] uppercase mt-4 mb-0 max-w-[22ch]">Inspectie aanvragen</h1>
+    </section>
+
+    <section class="py-16 px-12 grid grid-cols-[6fr_6fr] gap-14 items-start">
+      <div class="relative p-7 border border-divider">
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -top-1.5 -right-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -left-1.5"></i>
+        <i class="absolute w-[11px] h-[11px] text-black/55 before:content-[''] before:absolute before:bg-current before:left-[5px] before:top-0 before:w-px before:h-full after:content-[''] after:absolute after:bg-current after:top-[5px] after:left-0 after:w-full after:h-px -bottom-1.5 -right-1.5"></i>
+        <div class="grid gap-4">
+          <div>
+            <label for="c-naam" class="block text-xs mb-[5px] text-accent-800/70">Naam</label>
+            <input id="c-naam" type="text" placeholder="Uw naam" class="w-full min-h-9 px-2.5 py-1.5 text-sm text-accent-800 caret-accent bg-surface border border-divider rounded hover:border-black/45 focus:outline-none focus:border-accent">
+          </div>
+          <div>
+            <label for="c-bedrijf" class="block text-xs mb-[5px] text-accent-800/70">Bedrijf</label>
+            <input id="c-bedrijf" type="text" placeholder="Bedrijfsnaam" class="w-full min-h-9 px-2.5 py-1.5 text-sm text-accent-800 caret-accent bg-surface border border-divider rounded hover:border-black/45 focus:outline-none focus:border-accent">
+          </div>
+          <div>
+            <label for="c-mail" class="block text-xs mb-[5px] text-accent-800/70">E-mail</label>
+            <input id="c-mail" type="email" placeholder="naam@bedrijf.nl" class="w-full min-h-9 px-2.5 py-1.5 text-sm text-accent-800 caret-accent bg-surface border border-divider rounded hover:border-black/45 focus:outline-none focus:border-accent">
+          </div>
+          <div>
+            <label for="c-locatie" class="block text-xs mb-[5px] text-accent-800/70">Locatie en object</label>
+            <input id="c-locatie" type="text" placeholder="bv. hal 3, Eemshaven — gevel 18 m" class="w-full min-h-9 px-2.5 py-1.5 text-sm text-accent-800 caret-accent bg-surface border border-divider rounded hover:border-black/45 focus:outline-none focus:border-accent">
+          </div>
+          <button type="button" class="inline-flex items-center justify-center gap-1.5 cursor-pointer font-heading font-semibold text-sm rounded-none border border-divider px-4 py-2 bg-accent2 text-white self-start">Aanvraag versturen</button>
+        </div>
+      </div>
+      <div>
+        <h2 class="font-heading text-3xl uppercase mt-0 mb-4">Direct contact</h2>
+        <div class="grid gap-3.5 text-[17px] leading-normal">
+          <div><span class="font-heading text-[13px] tracking-[.1em] uppercase text-accent-700 block">Telefoon</span><a href="tel:+31634001338" class="text-accent-700 hover:text-accent2">06 34 00 13 38</a></div>
+          <div><span class="font-heading text-[13px] tracking-[.1em] uppercase text-accent-700 block">E-mail</span><a href="mailto:industrialdronecleaning@gmail.com" class="text-accent-700 hover:text-accent2">industrialdronecleaning@gmail.com</a></div>
+          <div><span class="font-heading text-[13px] tracking-[.1em] uppercase text-accent-700 block">Standplaats</span>Groningen — werkgebied heel Nederland</div>
+        </div>
+        <p class="text-[15px] leading-[1.6] text-neutral-800 mt-6 mb-0 max-w-[44ch]">Stuur bij je aanvraag zo mogelijk een foto van het object en de hoogte mee; dan kunnen wij vaak al voor het locatiebezoek een indicatie geven.</p>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <footer class="bg-ink-900 text-white/70 px-12 py-10 flex justify-between items-center gap-8 flex-wrap">
+    <div class="flex items-center gap-4">
+      <img src="assets/logo-idc.png" alt="IDC" class="h-5 w-auto">
+      <span class="font-heading text-sm tracking-[.1em] uppercase">Industrial Drone Cleaning</span>
+    </div>
+    <div class="text-sm">Groningen · 06 34 00 13 38 · industrialdronecleaning@gmail.com</div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { page: "home" };
+  go(page) { this.setState({ page }); window.scrollTo(0, 0); }
+  renderVals() {
+    const p = this.state.page;
+    return {
+      isHome: p === "home", isDiensten: p === "diensten", isOver: p === "over",
+      isPrijzen: p === "prijzen", isContact: p === "contact",
+      goHome: () => this.go("home"), goDiensten: () => this.go("diensten"),
+      goOver: () => this.go("over"), goPrijzen: () => this.go("prijzen"),
+      goContact: () => this.go("contact"),
+    };
+  }
+}
+
+</script>
+</body>
+</html>
