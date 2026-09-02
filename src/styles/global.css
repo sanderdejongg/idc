@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+/* Width-matched to Barlow Condensed (measured ~66-71% of the system sans at
+   the same font-size) so the hero title wraps the same way before and after
+   the webfont swaps in — without this, the fallback's wider glyphs wrap an
+   extra line, growing the hero section (and its cover-fit background image)
+   until Barlow Condensed loads. */
+@font-face {
+  font-family: 'Barlow Condensed Fallback';
+  src:
+    local('-apple-system'), local('Segoe UI'), local('Roboto'), local('Helvetica Neue'),
+    local('Arial');
+  size-adjust: 68%;
+}
+
+@theme {
+  --font-heading: 'Barlow Condensed', 'Barlow Condensed Fallback', system-ui, sans-serif;
+  --font-body: 'Barlow', system-ui, sans-serif;
+
+  --color-canvas: #f3f4f6;
+  --color-surface: #ffffff;
+  --color-ink: #1f2937;
+  --color-night: #0f172a;
+  --color-divider: color-mix(in srgb, #1f2937 18%, transparent);
+
+  --color-neutral-100: #f5f5f8;
+  --color-neutral-200: #e7e7ea;
+  --color-neutral-300: #d4d4d7;
+  --color-neutral-400: #b7b7ba;
+  --color-neutral-500: #98989b;
+  --color-neutral-600: #7a7a7d;
+  --color-neutral-700: #5d5d60;
+  --color-neutral-800: #424244;
+  --color-neutral-900: #2b2b2d;
+
+  --color-accent-100: #eaf2f9;
+  --color-accent-200: #cfe2f1;
+  --color-accent-300: #a8cae6;
+  --color-accent-400: #7fadd6;
+  --color-accent-500: #4682b4;
+  --color-accent-600: #3a6d99;
+  --color-accent-700: #2e567a;
+  --color-accent-800: #1f2937;
+  --color-accent-900: #0f172a;
+
+  --color-accent2-100: #fef1e6;
+  --color-accent2-200: #fddfc4;
+  --color-accent2-300: #fbc394;
+  --color-accent2-400: #fba55f;
+  --color-accent2-500: #f97316;
+  --color-accent2-600: #dd6210;
+  --color-accent2-700: #b34d09;
+  --color-accent2-800: #7d3606;
+  --color-accent2-900: #4a2004;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    background: var(--color-canvas);
+    color: var(--color-ink);
+  }
+  a {
+    color: var(--color-accent-700);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-accent2-500);
+  }
+  button {
+    font: inherit;
+  }
+}
+
+/* Managed by the v-reveal directive (src/directives/reveal.ts), which toggles
+   these class names directly — they can't be expressed as Tailwind utilities
+   applied in templates. */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 0.8, 0.24, 1),
+    transform 0.7s cubic-bezier(0.16, 0.8, 0.24, 1);
+  will-change: opacity, transform;
+}
+.reveal.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-parallax-img {
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-parallax-img {
+    transform: none !important;
+  }
+}
